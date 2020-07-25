@@ -15,7 +15,7 @@ public class Dot : MonoBehaviour
 
     private FindMatches findMatches;
     private Board board;
-    private GameObject otherDot;
+    public GameObject otherDot;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
@@ -30,10 +30,8 @@ public class Dot : MonoBehaviour
     public GameObject rowArrow;
     public GameObject columnArrow;
 
-    // Start is called before the first frame update
     void Start()
     {
-
         isColumnBomb = false;
         isRowBomb = false;
         board = FindObjectOfType<Board>();
@@ -51,20 +49,20 @@ public class Dot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            isColumnBomb = true;
-            GameObject arrow = Instantiate(columnArrow, transform.position, Quaternion.identity);
+            isRowBomb = true;
+            GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
             arrow.transform.parent = this.transform;
-        }  
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isMatched)
-        {
-            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color(1f, 1f, 1f, .2f);
-        }
+        // if (isMatched)
+        // {
+        //     SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+        //     mySprite.color = new Color(1f, 1f, 1f, .2f);
+        // }
 
         targetX = column;
         targetY = row;
@@ -73,7 +71,7 @@ public class Dot : MonoBehaviour
             // move toward the target
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
-            if(board.allDots[column, row] != this.gameObject)
+            if (board.allDots[column, row] != this.gameObject)
             {
                 board.allDots[column, row] = this.gameObject;
             }
@@ -111,22 +109,23 @@ public class Dot : MonoBehaviour
     public IEnumerator CheckMoveCo()
     {
         yield return new WaitForSeconds(.5f);
-        if(otherDot != null)
+        if (otherDot != null)
         {
-            if(!isMatched && !otherDot.GetComponent<Dot>().isMatched)
+            if (!isMatched && !otherDot.GetComponent<Dot>().isMatched)
             {
                 otherDot.GetComponent<Dot>().row = row;
                 otherDot.GetComponent<Dot>().column = column;
                 row = previousRow;
                 column = previousColumn;
                 yield return new WaitForSeconds(.5f);
+                board.currentDot = null;
                 board.currentState = GameState.move;
             }
             else
             {
                 board.DestroyMatches();
             }
-            otherDot = null;
+            //otherDot = null;
         }
 
     }
@@ -155,6 +154,7 @@ public class Dot : MonoBehaviour
             swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
             MovePieces();
             board.currentState = GameState.wait;
+            board.currentDot = this;
         }
         else
         {
@@ -164,7 +164,7 @@ public class Dot : MonoBehaviour
 
     void MovePieces()
     {
-        if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1 )
+        if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)
         {
             // right swipe
             otherDot = board.allDots[column + 1, row];
@@ -172,7 +172,8 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().column -= 1;
             column += 1;
-        } else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1 )
+        }
+        else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
         {
             // up swipe
             otherDot = board.allDots[column, row + 1];
@@ -180,7 +181,8 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().row -= 1;
             row += 1;
-        } else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0 )
+        }
+        else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
         {
             // left swipe
             otherDot = board.allDots[column - 1, row];
@@ -188,7 +190,8 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().column += 1;
             column -= 1;
-        } else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
+        }
+        else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {
             // down swipe
             otherDot = board.allDots[column, row - 1];
@@ -230,5 +233,19 @@ public class Dot : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void MakeRowBomb()
+    {
+        isRowBomb = true;
+        GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
+        arrow.transform.parent = this.transform;
+    }
+
+    public void MakeColumnBomb()
+    {
+        isColumnBomb = true;
+        GameObject arrow = Instantiate(columnArrow, transform.position, Quaternion.identity);
+        arrow.transform.parent = this.transform;
     }
 }

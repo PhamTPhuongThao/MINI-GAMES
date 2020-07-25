@@ -120,7 +120,7 @@ MonoBehaviour:
   swipeResist: 1
   isColumnBomb: 0
   isRowBomb: 0
-  rowArrow: {fileID: 6335054475092840832, guid: 9fab8232dd971074790309f743056644,
+  rowArrow: {fileID: 3500258538268798284, guid: fda6e8e0abaf34798afbdb5a01c252d8,
     type: 3}
-  columnArrow: {fileID: 3376703212347115286, guid: 03ba7ed25fc75ac4986c87fcc671f1b6,
+  columnArrow: {fileID: 2215953628616951057, guid: d4faf953ce6694b9487a8ca69b6df666,
     type: 3}

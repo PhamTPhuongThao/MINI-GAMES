@@ -18,10 +18,10 @@ public class Board : MonoBehaviour
     private BackgroundTile[,] allTiles;
     public GameObject[] dots;
     public GameObject destroyEffect;
+    public Dot currentDot;
     public GameObject[,] allDots;
     private FindMatches findMatches;
 
-    // Start is called before the first frame update
     void Start()
     {
         findMatches = FindObjectOfType<FindMatches>();
@@ -32,9 +32,9 @@ public class Board : MonoBehaviour
 
     private void SetUp()
     {
-        for(int i = 0; i< width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j = 0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
                 Vector2 tempPosistion = new Vector2(i, j + offSet);
                 GameObject backgroundTile = Instantiate(tilePrefab, tempPosistion, Quaternion.identity) as GameObject;
@@ -63,7 +63,7 @@ public class Board : MonoBehaviour
     {
         if (column > 1 && row > 1)
         {
-            if (allDots[column - 1, row].tag == piece.tag && allDots[column-2,row].tag == piece.tag)
+            if (allDots[column - 1, row].tag == piece.tag && allDots[column - 2, row].tag == piece.tag)
             {
                 return true;
             }
@@ -71,11 +71,12 @@ public class Board : MonoBehaviour
             {
                 return true;
             }
-        } else if (column <=1 || row <= 1)
+        }
+        else if (column <= 1 || row <= 1)
         {
-            if(row > 1)
+            if (row > 1)
             {
-                if(allDots[column, row - 1].tag == piece.tag && allDots[column, row - 2].tag == piece.tag)
+                if (allDots[column, row - 1].tag == piece.tag && allDots[column, row - 2].tag == piece.tag)
                 {
                     return true;
                 }
@@ -95,6 +96,11 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
+            // How many elements are in the matched pieces list from findmatched?
+            if (findMatches.currentMaches.Count == 4 || findMatches.currentMaches.Count == 7)
+            {
+                findMatches.CheckBombs();
+            }
             findMatches.currentMaches.Remove(allDots[column, row]);
             GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
@@ -105,11 +111,11 @@ public class Board : MonoBehaviour
 
     public void DestroyMatches()
     {
-        for (int i =0; i< width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j<height; j++)
+            for (int j = 0; j < height; j++)
             {
-                if (allDots[i,j] != null)
+                if (allDots[i, j] != null)
                 {
                     DestroyMatchesAt(i, j);
                 }
@@ -121,15 +127,15 @@ public class Board : MonoBehaviour
     private IEnumerator DecreaseRowCo()
     {
         int nullCount = 0;
-        for(int i=0; i < width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j=0; j<height; j++)
+            for (int j = 0; j < height; j++)
             {
-                if (allDots[i,j] == null)
+                if (allDots[i, j] == null)
                 {
                     nullCount++;
                 }
-                else if (nullCount>0)
+                else if (nullCount > 0)
                 {
                     allDots[i, j].GetComponent<Dot>().row -= nullCount;
                     allDots[i, j] = null;
@@ -148,7 +154,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allDots[i,j] == null)
+                if (allDots[i, j] == null)
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
@@ -169,7 +175,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allDots[i,j] != null)
+                if (allDots[i, j] != null)
                 {
                     if (allDots[i, j].GetComponent<Dot>().isMatched)
                     {
@@ -190,7 +196,7 @@ public class Board : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             DestroyMatches();
         }
-
+        findMatches.currentMaches.Clear();
         yield return new WaitForSeconds(.5f);
         currentState = GameState.move;
     }
