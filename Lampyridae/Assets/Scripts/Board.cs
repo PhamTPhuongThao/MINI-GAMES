@@ -197,6 +197,7 @@ public class Board : MonoBehaviour
             DestroyMatches();
         }
         findMatches.currentMaches.Clear();
+        currentDot = null;
         yield return new WaitForSeconds(.5f);
         currentState = GameState.move;
     }
