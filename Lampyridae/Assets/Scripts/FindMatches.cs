@@ -10,7 +10,7 @@ public class FindMatches : MonoBehaviour
 
     void Start()
     {
-        board = FindObjectOfType<Board>();
+        board = GameObject.FindWithTag("Board").GetComponent<Board>();
     }
 
     public void FindAllMatches()
@@ -184,8 +184,13 @@ public class FindMatches : MonoBehaviour
         {
             if (board.allDots[column, i] != null)
             {
+                Dot dot = board.allDots[column, i].GetComponent<Dot>();
+                if (dot.isRowBomb)
+                {
+                    dots.Union(GetRowPieces(i)).ToList();
+                }
                 dots.Add(board.allDots[column, i]);
-                board.allDots[column, i].GetComponent<Dot>().isMatched = true;
+                dot.isMatched = true;
             }
         }
         return dots;
@@ -198,8 +203,13 @@ public class FindMatches : MonoBehaviour
         {
             if (board.allDots[i, row] != null)
             {
+                Dot dot = board.allDots[i, row].GetComponent<Dot>();
+                if (dot.isColumnBomb)
+                {
+                    dots.Union(GetColumnPieces(i)).ToList();
+                }
                 dots.Add(board.allDots[i, row]);
-                board.allDots[i, row].GetComponent<Dot>().isMatched = true;
+                dot.isMatched = true;
             }
         }
         return dots;

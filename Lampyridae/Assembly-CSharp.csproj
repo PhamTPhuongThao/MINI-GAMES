@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BackgroundTile.cs" />
      <Compile Include="Assets\Scripts\Board.cs" />
+     <Compile Include="Assets\Scripts\CameraScaler.cs" />
      <Compile Include="Assets\Scripts\Dot.cs" />
      <Compile Include="Assets\Scripts\FindMatches.cs" />
  <Reference Include="Unity.Timeline.Editor">

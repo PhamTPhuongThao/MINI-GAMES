@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -146,6 +147,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b866dbc8c484d56a4baa5a59661318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraOffset: -10
+  aspectRatio: 0.625
+  padding: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -215,7 +231,7 @@ GameObject:
   - component: {fileID: 1491567448}
   m_Layer: 0
   m_Name: Board
-  m_TagString: Untagged
+  m_TagString: Board
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 1
-  width: 7
+  width: 10
   height: 10
   offSet: 20
   tilePrefab: {fileID: 2128339893917280303, guid: 60b9786648d9fbc40973dc2012faecfa,
@@ -256,10 +272,6 @@ MonoBehaviour:
   - {fileID: 542603819931828183, guid: 4b81b00a8408d3743b06ca3bb65d9449, type: 3}
   - {fileID: 4906823435184806356, guid: f78be64bf6d99e646b9df54b296f6c08, type: 3}
   - {fileID: 8668790208620197568, guid: 2c728c6389fb0d146921f9ad41152a4c, type: 3}
-  - {fileID: 4039550295187289391, guid: 331f7447c0e0bad4cb11368d4a57d823, type: 3}
-  - {fileID: 6839051041314859858, guid: e7ce701d8defe344b8e3e608e7030589, type: 3}
-  - {fileID: 4653879093542437092, guid: d084f81629a0c6d4a8f91b14785e3642, type: 3}
-  - {fileID: 5908096825817859246, guid: 8182f73296861364aade1d38fc302582, type: 3}
   - {fileID: 5686876754496149259, guid: f84b3728002cf954a99383b939abc4e0, type: 3}
   destroyEffect: {fileID: 4517960771551673084, guid: 8dbbfc8ef77ad2b4cb7f8a180a425c9e,
     type: 3}

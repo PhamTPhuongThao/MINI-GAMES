@@ -12,6 +12,7 @@ TagManager:
   - Salmon Dot
   - Teal Dot
   - Yelllow Dot
+  - Board
   layers:
   - Default
   - TransparentFX
