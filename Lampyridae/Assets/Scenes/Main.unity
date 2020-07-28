@@ -257,12 +257,13 @@ MonoBehaviour:
   - {fileID: 4906823435184806356, guid: f78be64bf6d99e646b9df54b296f6c08, type: 3}
   - {fileID: 8668790208620197568, guid: 2c728c6389fb0d146921f9ad41152a4c, type: 3}
   - {fileID: 4039550295187289391, guid: 331f7447c0e0bad4cb11368d4a57d823, type: 3}
+  - {fileID: 6839051041314859858, guid: e7ce701d8defe344b8e3e608e7030589, type: 3}
   - {fileID: 4653879093542437092, guid: d084f81629a0c6d4a8f91b14785e3642, type: 3}
   - {fileID: 5908096825817859246, guid: 8182f73296861364aade1d38fc302582, type: 3}
-  - {fileID: 6839051041314859858, guid: e7ce701d8defe344b8e3e608e7030589, type: 3}
   - {fileID: 5686876754496149259, guid: f84b3728002cf954a99383b939abc4e0, type: 3}
   destroyEffect: {fileID: 4517960771551673084, guid: 8dbbfc8ef77ad2b4cb7f8a180a425c9e,
     type: 3}
+  currentDot: {fileID: 0}
 --- !u!1 &1660400477
 GameObject:
   m_ObjectHideFlags: 0

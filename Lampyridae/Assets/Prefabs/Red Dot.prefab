@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4039550295187289391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.47, y: 1.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,11 +116,18 @@ MonoBehaviour:
   targetX: 0
   targetY: 0
   isMatched: 0
+  otherDot: {fileID: 0}
   swipeAngle: 0
   swipeResist: 1
+  isColorBomb: 0
   isColumnBomb: 0
   isRowBomb: 0
+  isAdjacentBomb: 0
+  adjacentMaker: {fileID: 2840441541040343200, guid: 771c478d1525b480d9d577504f2ed919,
+    type: 3}
   rowArrow: {fileID: 3500258538268798284, guid: fda6e8e0abaf34798afbdb5a01c252d8,
     type: 3}
   columnArrow: {fileID: 2215953628616951057, guid: d4faf953ce6694b9487a8ca69b6df666,
+    type: 3}
+  colorBomb: {fileID: 4506587740762589018, guid: bc39bc8da4feb4a61adba9142b48449f,
     type: 3}
