@@ -127,6 +127,7 @@ public class Board : MonoBehaviour
             // return 3 if column or row match
             // return 2 if adjacent
             // return 1 if it's a color bomb
+
             if (columMatch == 4 || rowMatch == 4)
             {
                 return 1;
@@ -141,25 +142,7 @@ public class Board : MonoBehaviour
             }
         }
         return 0;
-        // int numberHorizontal = 0;
-        // int numberVertical = 0;
-        // Dot firstPiece = findMatches.currentMaches[0].GetComponent<Dot>();
-        // if (firstPiece != null)
-        // {
-        //     foreach (GameObject currentPiece in findMatches.currentMaches)
-        //     {
-        //         Dot dot = currentPiece.GetComponent<Dot>();
-        //         if (dot.row == firstPiece.row)
-        //         {
-        //             numberHorizontal++;
-        //         }
-        //         if (dot.column == firstPiece.column)
-        //         {
-        //             numberVertical++;
-        //         }
-        //     }
-        // }
-        // return (numberVertical == 5 || numberHorizontal == 5);
+
     }
 
     private void CheckToMakeBombs()
@@ -232,73 +215,6 @@ public class Board : MonoBehaviour
                 findMatches.CheckBombs();
             }
         }
-        //     if (findMatches.currentMaches.Count == 4 || findMatches.currentMaches.Count == 7)
-        //     {
-        //         findMatches.CheckBombs();
-        //     }
-        //     if (findMatches.currentMaches.Count == 5 || findMatches.currentMaches.Count == 8)
-        //     {
-        //         if (ColumnOrRow())
-        //         {
-        //             // color
-        //             if (currentDot != null)
-        //             {
-        //                 if (currentDot.isMatched)
-        //                 {
-        //                     if (!currentDot.isColorBomb)
-        //                     {
-        //                         currentDot.isMatched = false;
-        //                         currentDot.MakeColorBomb();
-        //                     }
-        //                 }
-        //                 else
-        //                 {
-        //                     if (currentDot.otherDot != null)
-        //                     {
-        //                         Dot otherDot = currentDot.otherDot.GetComponent<Dot>();
-        //                         if (otherDot.isMatched)
-        //                         {
-        //                             if (!otherDot.isColorBomb)
-        //                             {
-        //                                 otherDot.isMatched = false;
-        //                                 otherDot.MakeColorBomb();
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         else
-        //         {
-        //             //adjacent
-        //             if (currentDot != null)
-        //             {
-        //                 if (currentDot.isMatched)
-        //                 {
-        //                     if (!currentDot.isAdjacentBomb)
-        //                     {
-        //                         currentDot.isMatched = false;
-        //                         currentDot.MakeAdjacentBomb();
-        //                     }
-        //                 }
-        //                 else
-        //                 {
-        //                     if (currentDot.otherDot != null)
-        //                     {
-        //                         Dot otherDot = currentDot.otherDot.GetComponent<Dot>();
-        //                         if (otherDot.isMatched)
-        //                         {
-        //                             if (!otherDot.isAdjacentBomb)
-        //                             {
-        //                                 otherDot.isMatched = false;
-        //                                 otherDot.MakeAdjacentBomb();
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
     }
 
     private void DestroyMatchesAt(int column, int row)
