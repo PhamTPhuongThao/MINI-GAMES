@@ -5,7 +5,8 @@ using UnityEngine;
 public enum GameState
 {
     wait,
-    move
+    move,
+    aimove
 }
 
 public class Board : MonoBehaviour
@@ -24,7 +25,7 @@ public class Board : MonoBehaviour
 
     void Start()
     {
-        findMatches = FindObjectOfType<FindMatches>();
+        findMatches = GameObject.FindWithTag("FindMatches").GetComponent<FindMatches>();
         allTiles = new BackgroundTile[width, height];
         allDots = new GameObject[width, height];
         SetUp();
@@ -157,6 +158,7 @@ public class Board : MonoBehaviour
                 {
                     if (currentDot.isMatched)
                     {
+                        Debug.Log("make current to color bomb");
                         if (!currentDot.isColorBomb)
                         {
                             currentDot.isMatched = false;
@@ -165,6 +167,7 @@ public class Board : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("make other to color bomb");
                         if (currentDot.otherDot != null)
                         {
                             Dot otherDot = currentDot.otherDot.GetComponent<Dot>();
@@ -235,6 +238,9 @@ public class Board : MonoBehaviour
 
     public void DestroyMatches()
     {
+        // wait when match on board is destroying
+        //Debug.Log(currentState);
+        currentState = GameState.wait;
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)

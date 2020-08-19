@@ -41,8 +41,7 @@ public class Dot : MonoBehaviour
         isColorBomb = false;
         isAdjacentBomb = false;
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
-        //board = FindObjectOfType<Board>();
-        findMatches = FindObjectOfType<FindMatches>();
+        findMatches = GameObject.FindWithTag("FindMatches").GetComponent<FindMatches>();
     }
 
     void Update()
@@ -147,7 +146,6 @@ public class Dot : MonoBehaviour
             board.currentState = GameState.wait;
             swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
             MovePieces();
-            //board.currentState = GameState.wait;
             board.currentDot = this;
         }
         else

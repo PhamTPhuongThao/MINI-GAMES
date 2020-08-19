@@ -13,6 +13,7 @@ TagManager:
   - Teal Dot
   - Yelllow Dot
   - Board
+  - FindMatches
   layers:
   - Default
   - TransparentFX
