@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class BackgroundTile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialize();
-    }
+   // Start is called before the first frame update
+   void Start()
+   {
+      Initialize();
+   }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   // Update is called once per frame
+   void Update()
+   {
 
-    void Initialize()
-    {
-        
-    }
+   }
+
+   void Initialize()
+   {
+
+   }
 }
