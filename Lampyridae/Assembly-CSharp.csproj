@@ -55,12 +55,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AIMove.cs" />
-     <Compile Include="Assets\Scripts\BackgroundTile.cs" />
-     <Compile Include="Assets\Scripts\Board.cs" />
-     <Compile Include="Assets\Scripts\CameraScaler.cs" />
-     <Compile Include="Assets\Scripts\Dot.cs" />
-     <Compile Include="Assets\Scripts\FindMatches.cs" />
+     <Compile Include="Assets\Scripts\Challenge Select\ChallengeSelectButton.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\AIMove.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\BackgroundTile.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\Board.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\CameraScaler.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\Dot.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\FindMatches.cs" />
+     <Compile Include="Assets\Scripts\Lampyridae\ScoreManager.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\CheckerBoard.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\Minimax.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\MinimaxAIMove.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\Move.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\Node.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\Piece.cs" />
+     <Compile Include="Assets\Scripts\Solitudinem\Play.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/PhamTPhuongThao/Desktop/Thesis/Lampyridae/Lampyridae/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

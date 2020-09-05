@@ -4,16 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Dark Green Dot
-  - Green Dot
-  - Indigo Dot
-  - Orange Dot
-  - Red Dot
-  - Salmon Dot
-  - Teal Dot
-  - Yelllow Dot
   - Board
   - FindMatches
+  - cam
+  - do
+  - hong
+  - tim
+  - vang
+  - xanhlacay
+  - xanhlachuoi
+  - xanhlamnhat
   layers:
   - Default
   - TransparentFX
@@ -23,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Board
   - 
   - 
   - 
