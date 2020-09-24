@@ -286,7 +286,6 @@ public class AIMove : MonoBehaviour
 
    public void AI()
    {
-
       CheckAIMove();
       FinalMove();
       AIMoving(finalAIMove);
