@@ -36,6 +36,7 @@ public class Dot : MonoBehaviour
 
    public AIMove AIMove;
 
+
    void Start()
    {
       isColumnBomb = false;
@@ -47,6 +48,13 @@ public class Dot : MonoBehaviour
       findMatches = GameObject.FindWithTag("FindMatches").GetComponent<FindMatches>();
    }
 
+   private void OnMouseOver()
+   {
+      if (Input.GetMouseButtonDown(1))
+      {
+         AIMove.AI();
+      }
+   }
    void Update()
    {
       targetX = column;
@@ -75,7 +83,6 @@ public class Dot : MonoBehaviour
          // move toward the target
          tempPosition = new Vector2(transform.position.x, targetY);
          transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
-         // transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
          if (board.allDots[column, row] != this.gameObject)
          {
             board.allDots[column, row] = this.gameObject;
@@ -91,7 +98,7 @@ public class Dot : MonoBehaviour
       }
    }
 
-   public IEnumerator CheckMoveCo()
+   public IEnumerator CheckAIMoveCo()
    {
       board.currentState = GameState.wait;
       if (isColorBomb)
@@ -121,7 +128,47 @@ public class Dot : MonoBehaviour
          else
          {
             board.DestroyMatches();
+            yield return new WaitForSeconds(.5f);
+         }
+      }
+
+   }
+
+   public IEnumerator CheckMoveCo()
+   {
+      board.currentState = GameState.wait;
+      if (isColorBomb)
+      {
+         // this piece is a color bomb, and the other piece is the color to destroy
+         findMatches.MatchPiecesOfColor(otherDot.tag);
+         isMatched = true;
+      }
+      else if (otherDot.GetComponent<Dot>().isColorBomb)
+      {
+         findMatches.MatchPiecesOfColor(this.gameObject.tag);
+         otherDot.GetComponent<Dot>().isMatched = true;
+      }
+      yield return new WaitForSeconds(.7f);
+      if (otherDot != null)
+      {
+         if (!isMatched && !otherDot.GetComponent<Dot>().isMatched)
+         {
+            otherDot.GetComponent<Dot>().row = row;
+            otherDot.GetComponent<Dot>().column = column;
+            row = previousRow;
+            column = previousColumn;
+            yield return new WaitForSeconds(.6f);
+            board.currentDot = null;
+            board.currentState = GameState.move;
             yield return new WaitForSeconds(.2f);
+            //StartCoroutine(Waiting());
+         }
+         else
+         {
+            board.DestroyMatches();
+            yield return new WaitForSeconds(.5f);
+            //StartCoroutine(Waiting());
+            //yield return new WaitForSeconds(.5f);
          }
       }
 
@@ -144,17 +191,14 @@ public class Dot : MonoBehaviour
       }
    }
 
-   private IEnumerator Waiting()
-   {
-      // while (!board.done)
-      // {
-      yield return new WaitForSeconds(.2f);
-      // }
-      yield return new WaitForSeconds(.4f);
-      board.currentState = GameState.aimove;
-      AIMove.AI();
-      yield return new WaitForSeconds(.4f);
-   }
+   // private IEnumerator Waiting()
+   // {
+   //    while (board.CountStep % 2 == 0)
+   //    {
+   //       yield return new WaitForSeconds(.2f);
+   //    }
+   //    AIMove.AI();
+   // }
 
    void CalculateAngle()
    {
@@ -173,11 +217,6 @@ public class Dot : MonoBehaviour
       otherDot.GetComponent<Dot>().row += -1 * (int)direction.y;
       column += (int)direction.x;
       row += (int)direction.y;
-      StartCheckPersonMove();
-   }
-
-   void StartCheckPersonMove()
-   {
       StartCoroutine(CheckMoveCo());
    }
 
@@ -235,7 +274,7 @@ public class Dot : MonoBehaviour
       otherDot.GetComponent<Dot>().row += -1 * (int)direction.y;
       column += (int)direction.x;
       row += (int)direction.y;
-      StartCoroutine(CheckMoveCo());
+      StartCoroutine(CheckAIMoveCo());
    }
 
    public void CalculateAngleAI(AIMove finalmove)

@@ -5,8 +5,7 @@ using UnityEngine;
 public enum GameState
 {
    wait,
-   move,
-   aimove
+   move
 }
 
 public class Board : MonoBehaviour
@@ -31,6 +30,7 @@ public class Board : MonoBehaviour
 
    public int TotalLamScore;
    public int TotalPlayerScore;
+
 
 
    void Start()
@@ -250,7 +250,7 @@ public class Board : MonoBehaviour
          GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
          Destroy(particle, .5f);
          Destroy(allDots[column, row]);
-         scoreManager.DecreaseScore(basePieceValue * streakValue, GameState.move);
+         scoreManager.DecreaseScore(basePieceValue * streakValue);
          allDots[column, row] = null;
       }
    }
@@ -362,6 +362,7 @@ public class Board : MonoBehaviour
       yield return new WaitForSeconds(.8f);
       currentState = GameState.move;
       streakValue = 1;
+      yield return new WaitForSeconds(.5f);
    }
 
    public void SwitchPieces(int column, int row, Vector2 direction)

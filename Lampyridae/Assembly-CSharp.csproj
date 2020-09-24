@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Challenge Select\BackScript.cs" />
      <Compile Include="Assets\Scripts\Challenge Select\ChallengeSelectButton.cs" />
      <Compile Include="Assets\Scripts\Lampyridae\AIMove.cs" />
      <Compile Include="Assets\Scripts\Lampyridae\BackgroundTile.cs" />
